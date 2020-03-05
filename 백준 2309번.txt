@@ -1,0 +1,13 @@
+#น้มุ 2309น๘ itertools & sorted()
+from itertools import combinations
+
+dwarf = []
+for i in range(9):
+    dwarf.append(int(input()))
+
+canditate = list(combinations(dwarf, 7))
+for i in canditate:
+    if sum(i) == 100:
+        for j in sorted(i):
+            print(j, sep="\n")
+        break
