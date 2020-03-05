@@ -1,4 +1,4 @@
-#¹éÁØ 2309¹ø itertools & sorted()
+#ë°±ì¤€ 2309ë²ˆ itertools & sorted()
 from itertools import combinations
 
 dwarf = []
