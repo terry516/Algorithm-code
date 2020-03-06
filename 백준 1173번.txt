@@ -1,4 +1,4 @@
-#¹éÁØ 1173¹ø ¿îµ¿
+#ë°±ì¤€ 1173ë²ˆ ìš´ë™
 N, m, M, T, R = map(int, input().split())
 current_pulse = m
 minute = 0
@@ -11,11 +11,11 @@ while exercise < N:
     if current_pulse + T <= M:
         exercise += 1
         current_pulse += T
-        #print(minute, current_pulse, "¿îµ¿")
+        #print(minute, current_pulse, "Â¿Ã®ÂµÂ¿")
     elif current_pulse + T > M:
         if current_pulse - R < m:
             current_pulse = m
         else:
             current_pulse -= R
-        #print(minute, current_pulse,"ÈŞ½Ä")
+        #print(minute, current_pulse,"ÃˆÃÂ½Ã„")
 print(minute)
