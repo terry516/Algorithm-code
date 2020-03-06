@@ -1,0 +1,26 @@
+#BEAKJUN 2193 dynamic programming
+N = int(input())
+dp = [1, 1]
+def cal(dp, N):
+    if N == 1 or N == 1:
+        print(1)
+    elif len(dp) == N:
+        print(dp[len(dp)-1])
+    else:
+        dp.append(dp[len(dp)-2]+dp[len(dp)-1])
+        cal(dp, N)
+cal(dp, N)
+
+'''
+short coding
+
+import sys
+
+if __name__ == '__main__':
+    n = int(sys.stdin.readline())
+    d = [0, 1, 1]
+    for i in range(3, n+1):
+        d.append(d[i-1]+d[i-2])
+    print(d[-1])?
+
+'''
