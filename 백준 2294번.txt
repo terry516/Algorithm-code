@@ -1,0 +1,16 @@
+# beakjun 2294 dynamic programming
+import sys
+n, k = map(int, input().split())
+coin = []
+dp = [sys.maxsize for i in range(k + 1)]
+dp[0] = 0
+for i in range(n):
+    coin.append(int(input()))
+for i in coin:
+    for j in range(1, k + 1):
+        if j - i >= 0:
+            dp[j] = min(dp[j - i]+1, dp[j])
+if dp[k] == sys.maxsize:
+    print(-1)
+else:
+    print(dp[k])
