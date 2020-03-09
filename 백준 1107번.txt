@@ -1,4 +1,4 @@
-# beakjun 1107  ¡Úusing set¡Ú
+# beakjun 1107  using set
 N = int(input())
 M = int(input())
 break_num = set(input().split())
@@ -6,12 +6,36 @@ num = {'0','1', '2', '3', '4', '5', '6', '7', '8', '9'}
 num -= break_num
 
 result = abs(N - 100)
-for i in range(500001):
+for i in range(1000001):
     able = True
     for div_num in str(i):
         if div_num not in num:
             able = False
     if able:
+        result = min(result, abs(N - i) + len(str(i)))
+
+print(result)
+
+# runtime error â†‘
+# -----------------------------------------------------------
+
+enable_btn_set = {str(x) for x in range(11)}
+
+N = int(input())
+break_button_num = int(input())
+if (break_button_num == 0):
+    pass
+else:
+    break_button = set(input().split())
+    enable_btn_set -= break_button
+
+result = abs(N - 100)
+for i in range(1000001):
+    is_enable = True
+    for div_num in str(i):
+        if (div_num not in enable_btn_set):
+            is_enable = False
+    if (is_enable):
         result = min(result, abs(N - i) + len(str(i)))
 
 print(result)
