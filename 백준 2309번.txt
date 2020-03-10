@@ -1,4 +1,4 @@
-#백준 2309번 itertools & sorted()
+#baekjun 2309번 itertools & sorted()
 from itertools import combinations
 
 dwarf = []

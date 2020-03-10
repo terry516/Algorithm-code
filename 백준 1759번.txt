@@ -1,4 +1,4 @@
-# beakjun 1759 backtracking
+# baekjun 1759 backtracking
 import sys
 from itertools import combinations
 

@@ -1,4 +1,4 @@
-# beakjun 1107  using set
+# baekjun 1107  using set
 N = int(input())
 M = int(input())
 break_num = set(input().split())
