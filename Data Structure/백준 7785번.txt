@@ -1,0 +1,12 @@
+#baekjun 7785 data structure "회사에 있는 사람" use dictionary
+n = int(input())
+company = {}
+for _ in range(n):
+    a, b = input().split()
+    company[a] = b
+in_company = []
+for a in company:
+    if company[a] == 'enter':
+        in_company.append(a)
+for i in sorted(in_company,reverse=True):
+    print(i)
