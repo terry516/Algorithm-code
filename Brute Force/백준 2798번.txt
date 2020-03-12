@@ -1,0 +1,9 @@
+# baekjun 2798 burte force "blackjack"
+from itertools import combinations
+N, M = map(int, input().split())
+card = list(map(int, input().split()))
+max_sum = 0
+for i in combinations(card, 3):
+    if M >= sum(i):
+       max_sum = max(max_sum, sum(i))
+print(max_sum)
