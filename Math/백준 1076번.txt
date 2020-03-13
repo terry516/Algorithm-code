@@ -1,0 +1,23 @@
+#baekjun 1076 math 저항
+registance = {
+    "black": [0, 1],
+    'brown': [1, 10],
+    'red': [2, 100],
+    'orange': [3, 1000],
+    'yellow': [4, 10000],
+    'green': [5, 100000],
+    'blue': [6, 1000000],
+    'violet': [7, 10000000],
+    'grey': [8, 100000000],
+    'white': [9, 1000000000]
+}
+a = str(registance[input()][0])
+b = str(registance[input()][0])
+c = registance[input()][1]
+
+print(int(a+b)*c)
+
+''' short coding
+b=[];exec('i=input();b+=["bkbnrdoeywgnbevtgywe".find(i[0]+i[-1])//2];'*3);print((b[0]*10+b[1])*10**b[2])
+각 색들의 단축하여 사용 bk bn rd oe \
+'''

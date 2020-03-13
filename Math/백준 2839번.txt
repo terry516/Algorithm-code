@@ -1,0 +1,26 @@
+#baekjun 2839 math 설탕배달
+
+import sys  #사실상 dp문제와 차이가 없음
+N = int(input())
+dp = [sys.maxsize]*(N+1)
+dp[0] = 0
+sugar = [3, 5]
+for i in range(1, N+1):
+    for j in sugar:
+        if i < j:
+            pass
+        else:
+            dp[i] = min(dp[i], dp[i-j]+1)
+if dp[N] == sys.maxsize:
+    print(-1)
+else:
+    print(dp[N])
+
+''' 다른사람의 shortcoding 첨부
+a=int(input())
+b=(2*a)%5
+if a>=3*b:
+    print(b+(a-3*b)//5)
+else :
+    print(-1)
+'''

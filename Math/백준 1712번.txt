@@ -1,0 +1,24 @@
+#baekjun 1712 math 손익분기점
+#최대한 식을 줄여 보자
+A, B, C = map(int, input().split())
+product = 0
+if C <= B:
+    product = -1
+else:
+    product = A//(C-B)+1
+print(product)
+
+''' 시간초과 code
+A, B, C = map(int, input().split())
+go = 1
+product = 1
+if C <= B:
+    print(-1)
+else:
+    while go:
+        if A+(B*product) >= C * product:
+            product += 1
+        else:
+            print(product)
+            go = 0
+'''
