@@ -1,0 +1,15 @@
+#baekjun 1064 평행사변형 기하
+
+pa = list(map(int, input().split()))
+side = []
+for i in range(0, 5, 2):  # 3점으로 직선 3개를 만들어서 서로 길이 비교
+    if i == 4:
+        side.append((((pa[i] - pa[0]) ** 2 + (pa[i + 1] - pa[1]) ** 2) ** 0.5))
+    else:
+        side.append((((pa[i] - pa[i+2]) ** 2 + (pa[i + 1] - pa[i + 3]) ** 2) ** 0.5))
+side.sort()
+
+if (pa[1]-pa[3])*(pa[0]-pa[4]) == (pa[1]-pa[5])*(pa[0]-pa[2]):  # 평행사변형이 안만들어질때 기울기 같을때
+    print(-1)
+else:
+    print(2*((side[2]+side[1])-(side[0]+side[1])))

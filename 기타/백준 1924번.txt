@@ -1,0 +1,14 @@
+#baekjun 1924 2007년 구현
+
+month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+day = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT']
+a, b = map(int, input().split())
+print(day[(sum(month[:a-1])+b)%7])
+
+''' short coding 다소 난해
+m,n=map(int,input().split(' '));print('SMTWTFSUOUEHRANNEDUIT'[(int('0033614625035'[m])+n)%7::7])
+or
+from datetime import date #  이것도 많이 씀
+x,y = map(int, input().split())
+print(date(2007, x, y).strftime("%a").upper())
+'''

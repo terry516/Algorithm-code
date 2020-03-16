@@ -1,0 +1,18 @@
+#baekjun 1152 "단어의 개수" 내가 뭘한거지?
+a = input()
+count = 0
+flag = []
+for i in a:
+    if i == ' ':
+        flag.append(0)
+    else:
+        flag.append(1)
+if flag[0] == 1:
+    count += 1
+for i in range(len(flag)-1):
+    if flag[i] == 0 and flag[i] != flag[i+1]:
+        count += 1
+print(count)
+''' short coding
+print(len(input().split()))
+'''
