@@ -1,0 +1,15 @@
+#baekjun 4153 직각삼각형 - 구현 (쉬움)
+answer = []
+flag = True
+while flag:
+    a = list(map(int, input().split()))
+    if a[0] == 0 and a[1] == 0 and a[2] == 0:
+        break
+    else:
+        a.sort()
+        if a[2]**2 == a[0]**2 + a[1]**2:
+            answer.append('right')
+        else:
+            answer.append('wrong')
+for i in answer:
+    print(i)
