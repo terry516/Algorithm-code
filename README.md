@@ -12,3 +12,6 @@ baekjun 사이트 알고리즘 소스코드
 4. BFS, DFS
 - deque, queue, stack
 - 플로이드 와샬 알고리즘
+5. Greedy Algorithm
+- 여러 경우 중 하나를 선택 할 때마다 그 순간 최적의 해를 선택해 나아감
+- 최적의 해는 찾지 못할 수 있다.(ex) 거스름돈 등)
