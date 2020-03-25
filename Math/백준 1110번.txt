@@ -1,0 +1,22 @@
+#baekjun 1110 더하기 사이클 - math
+N = input()
+
+
+def solve(N):
+    temp = 0
+    for i in N:
+        temp += int(i)
+    temp = N[-1] + str(temp)[-1]
+    return temp
+
+
+answer = 0
+temp_N = N
+cnt = 0
+if len(N) == 1:
+    N = '0' + N
+while answer != N:
+    answer = solve(temp_N)
+    temp_N = answer
+    cnt += 1
+print(cnt)

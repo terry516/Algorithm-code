@@ -1,0 +1,16 @@
+#baekjun 1049 기타줄 - greedy
+n, m = map(int, input().split())
+seit = []
+unit = []
+for i in range(m):
+    a, b = map(int, input().split())
+    seit.append(a)
+    unit.append(b)
+if min(unit) * 6 < min(seit):  # 낱개가 가장 싼 경우
+    answer = min(unit) * n
+else:  # 세트가 더 싼 경우
+    if (n%6) * min(unit) > min(seit):  # 나머지가 있을때 세트 or 낱개
+        answer = min(seit) * ((n//6)+1)
+    else:
+        answer = min(seit) * ((n//6)) + min(unit) * (n%6)
+print(answer)

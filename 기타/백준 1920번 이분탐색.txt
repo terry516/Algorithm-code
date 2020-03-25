@@ -1,0 +1,40 @@
+# baekjun 1920 수 찾기 - 이분탐색
+
+n = int(input())
+a = list(map(int, input().split()))
+m = int(input())
+b = list(map(int, input().split()))
+a = sorted(a)
+
+
+def binarySearch(arr, val, low, high): #  잘 외워두자
+    if low > high:
+        return False
+
+    mid = (low + high) // 2
+    if arr[mid] > val:
+        return binarySearch(arr, val, low, mid - 1)
+    elif arr[mid] < val:
+        return binarySearch(arr, val, mid + 1, high)
+    else:
+        return True
+
+
+for i in b:
+    if binarySearch(a, i, 0, n - 1):
+        print(1)
+    else:
+        print(0)
+
+'''  이분탐색을 안쓰니 시간초과가 뜬다
+n = int(input())
+a = list(map(int, input().split()))
+m = int(input())
+b = list(map(int, input().split()))
+
+for i in b:
+    if i in a:
+        print(1)
+    else:
+        print(0)
+'''

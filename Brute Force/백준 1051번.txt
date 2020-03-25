@@ -1,0 +1,19 @@
+#baekjun 1051 숫자 정사각형 - brute force
+n, m = map(int, input().split())
+a = [list(input()) for _ in range(n)]
+max_side = min(n, m) #  가장 긴 변은 n,m중 작은값 
+answer = []
+for x in range(2, max_side+1):
+    for i in range(n-x+1):
+        for j in range(m-x+1):
+            if a[i][j] != a[i][j + x - 1]: #  숏코딩을 보니 조건을 1줄로 줄일 수 있을거같다
+                continue
+            if a[i][j] != a[i + x - 1][j]:
+                continue
+            if a[i][j] != a[i + x - 1][j + x - 1]:
+                continue
+            answer.append(x**2)
+if not answer:
+    print(1)
+else:
+    print(max(answer))

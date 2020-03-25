@@ -1,0 +1,16 @@
+#baekjun 2579번 계단오르기 - dp
+n = int(input())
+stair = [0]
+for i in range(n):
+    stair.append(int(input()))
+dp = [0]*(n+1)
+dp[1] = stair[1]
+dp[2] = stair[1] + stair[2]
+for i in range(3, n+1):
+    dp[i] = max(dp[i-2]+stair[i], dp[i-3]+stair[i]+stair[i-1])
+print(dp[n])
+
+'''
+런타임에러 발생
+구글에서 찾아본 다른 파이썬 코드들도 런타임에러가 뜸
+'''
