@@ -1,4 +1,4 @@
-#baekjun 2875 대회 or 인턴 greedy algo
+#baekjoon 2875 대회 or 인턴 greedy algo
 
 N,M,K = map(int,input().split())
 team = 1

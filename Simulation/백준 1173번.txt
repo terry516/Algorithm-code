@@ -1,4 +1,4 @@
-#Baekjun 1173번 운동
+﻿#Baekjoon 1173번 운동
 N, m, M, T, R = map(int, input().split())
 current_pulse = m
 minute = 0

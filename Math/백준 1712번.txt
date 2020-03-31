@@ -1,4 +1,4 @@
-#baekjun 1712 math 손익분기점
+#baekjoon 1712 math 손익분기점
 #최대한 식을 줄여 보자
 A, B, C = map(int, input().split())
 product = 0

@@ -1,4 +1,4 @@
-#baekjun 11053 가장 긴 증가하는 부분 수열 dp
+#baekjoon 11053 가장 긴 증가하는 부분 수열 dp
 
 n = int(input())
 a = list(map(int, input().split()))

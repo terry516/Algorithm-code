@@ -1,4 +1,4 @@
-#baekjun 4153 직각삼각형 - 구현 (쉬움)
+#baekjoon 4153 직각삼각형 - 구현 (쉬움)
 answer = []
 flag = True
 while flag:

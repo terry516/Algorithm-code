@@ -1,0 +1,11 @@
+#baekjoon 2217 로프 - greedy
+ 
+n = int(input()) #로프를 N개부터 1개까지 사용할때 모든 최대 중량 계산
+rope = []
+for _ in range(n):
+    rope.append(int(input()))
+rope.sort()
+answer = []
+for i in range(0, n):
+    answer.append(rope[i]*(n-i))
+print(max(answer))

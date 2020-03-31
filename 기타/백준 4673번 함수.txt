@@ -1,0 +1,19 @@
+#baekjoon 4673 셀프넘버 - 함수
+
+self_num = [a for a in range(1, 10001)] #  본인은 함수를 사용하여 해결
+def solve(a):
+    answer = []
+    for i in a:
+        del_num = 0
+        for b in str(i):
+            del_num += int(b)
+        answer.append(del_num+i)
+    return answer
+answer = solve(self_num)
+for i in self_num:
+    if i not in answer:
+        print(i)
+''' {*a}의 의미와 eval 의 사용 숏코딩
+a=range(10001)
+print(*sorted({*a}-{eval("+".join(str(n)))+n for n in a})) 
+'''

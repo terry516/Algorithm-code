@@ -1,4 +1,4 @@
-#baekjun 1049 기타줄 - greedy
+#baekjoon 1049 기타줄 - greedy
 n, m = map(int, input().split())
 seit = []
 unit = []

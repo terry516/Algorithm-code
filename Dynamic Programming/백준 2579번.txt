@@ -1,4 +1,4 @@
-#baekjun 2579번 계단오르기 - dp
+#baekjoon 2579번 계단오르기 - dp
 n = int(input())
 stair = [0]
 for i in range(n):

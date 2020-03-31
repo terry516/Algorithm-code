@@ -1,4 +1,4 @@
-#BEAKJUN 2193 dynamic programming
+#BEAKJOON 2193 dynamic programming
 N = int(input())
 dp = [1, 1]
 def cal(dp, N):

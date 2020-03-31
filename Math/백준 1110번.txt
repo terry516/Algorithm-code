@@ -1,4 +1,4 @@
-#baekjun 1110 더하기 사이클 - math
+#baejoon 1110 더하기 사이클 - math
 N = input()
 
 

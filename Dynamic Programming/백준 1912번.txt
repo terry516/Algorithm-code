@@ -1,0 +1,26 @@
+#baekjoon 1912 연속합 - dp
+n = int(input())
+a = list(map(int, input().split()))
+sum = [a[0]]
+for i in range(len(a) - 1):
+    sum.append(max(sum[i] + a[i + 1], a[i + 1]))
+print(max(sum))
+
+''' 내가 풀이한 코드 왜 이렇게 어렵게 했는가
+n = int(input())
+val = list(map(int, input().split()))
+dp = [0] * n
+dp[0] = val[0]
+start_point = 0
+for i in range(1, n):  # 음수가 발생할 경우 조건 부여
+    if val[i] < 0:
+        if sum(val[start_point:i]) + (val[i]) < 0:
+            start_point = i+1
+            dp[i] = -1000
+        else:
+            dp[i] = sum(val[start_point:i])
+    else:
+        dp[i] = sum(val[start_point:i+1])
+
+print(max(dp))
+'''

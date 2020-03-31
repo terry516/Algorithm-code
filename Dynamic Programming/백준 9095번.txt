@@ -1,4 +1,4 @@
-#baekjun 9095 1,2,3더하기 - dp
+#baekjoon 9095 1,2,3더하기 - dp
 n = int(input())
 coin = [1, 2, 3]
 result = []

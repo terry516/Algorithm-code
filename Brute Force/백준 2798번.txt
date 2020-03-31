@@ -1,4 +1,4 @@
-# baekjun 2798 burte force "blackjack"
+# baekjoon 2798 burte force "blackjack"
 from itertools import combinations
 N, M = map(int, input().split())
 card = list(map(int, input().split()))

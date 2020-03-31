@@ -1,4 +1,4 @@
-#baekjun 1152 "단어의 개수" 내가 뭘한거지?
+#baekjoon 1152 "단어의 개수" 내가 뭘한거지?
 a = input()
 count = 0
 flag = []

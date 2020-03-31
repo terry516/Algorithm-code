@@ -1,4 +1,4 @@
-# baekjun 2294 dynamic programming
+# baekjoon 2294 dynamic programming
 import sys
 n, k = map(int, input().split())
 coin = []

@@ -1,4 +1,4 @@
-#baekjun 2839 math 설탕배달
+#baekjoon 2839 math 설탕배달
 
 import sys  #사실상 dp문제와 차이가 없음
 N = int(input())

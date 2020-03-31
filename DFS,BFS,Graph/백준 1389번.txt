@@ -1,4 +1,4 @@
-# baekjun 1389 BFS
+# baekjoon 1389 BFS
 N, M = map(int, input().split())
 friend_map = [[N for _ in range(N)] for _ in range(N)]
 

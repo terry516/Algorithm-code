@@ -1,4 +1,4 @@
-#baekjun 2156 포도주 시식 - dp
+#baekjoon 2156 포도주 시식 - dp
 n = int(input())
 w = [0]
 for i in range(n):

@@ -1,4 +1,4 @@
-#baekjun 1076 math 저항
+#baekjoon 1076 math 저항
 registance = {
     "black": [0, 1],
     'brown': [1, 10],

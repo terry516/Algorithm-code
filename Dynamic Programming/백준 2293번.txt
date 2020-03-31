@@ -1,4 +1,4 @@
-#baekjun 2293 dynamic programming
+#baekjoon 2293 dynamic programming
 
 n, k = map(int, input().split())
 coin = []

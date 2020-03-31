@@ -1,4 +1,4 @@
-#baekjun 1051 숫자 정사각형 - brute force
+#baekjoon 1051 숫자 정사각형 - brute force
 n, m = map(int, input().split())
 a = [list(input()) for _ in range(n)]
 max_side = min(n, m) #  가장 긴 변은 n,m중 작은값 

@@ -1,4 +1,4 @@
-# baekjun 1920 수 찾기 - 이분탐색
+# baekjoon 1920 수 찾기 - 이분탐색
 
 n = int(input())
 a = list(map(int, input().split()))
