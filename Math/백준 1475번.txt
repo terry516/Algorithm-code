@@ -1,0 +1,15 @@
+# baekjoon 1475 ¹æ¹øÈ£ - math
+import math
+
+n = input()
+number = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+for i in n:
+    if int(i) != 6 and int(i) != 9:
+        number[int(i)] += 1
+    else:
+        number[9] += 1
+m_num = number.index(max(number))
+if m_num != 9:
+    print(number[m_num])
+else:
+    print(math.ceil(number[m_num]/2))

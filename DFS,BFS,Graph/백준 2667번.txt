@@ -1,0 +1,35 @@
+#baekjoon 2667 단지번호붙이기 - DFS
+n = int(input())
+m = [list(map(int,input())) for i in range(n)]
+
+dx = [0, 0, 1, -1]  # 위 아래 오 왼
+dy = [1, -1, 0, 0]
+danzi = []
+info = set()
+
+for i in range(n):
+    for j in range(n):
+        if m[i][j] == 1:
+            info.add((i, j))
+
+def find_house(i, j, visited): # 내가 어떻게 했을까?
+    for p in range(4):
+        nx = i + dx[p]
+        ny = j + dy[p]
+        if 0 <= nx < n and 0 <= ny < n:
+            if m[nx][ny] == 1 and (nx, ny) not in visited:
+                visited.add((nx, ny))
+                find_house(nx, ny, visited)
+
+
+for i in range(n):
+    for j in range(n):
+        if (i, j) in info:
+            visited = set()
+            visited.add((i, j))
+            find_house(i, j, visited)
+            danzi.append(len(visited)) # 단지 추가
+            info = info - visited
+print(len(danzi))
+for i in sorted(danzi):
+    print(i)

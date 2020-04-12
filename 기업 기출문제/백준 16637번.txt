@@ -1,0 +1,18 @@
+#baekjoon 16637 괄호 추가하기 - 삼성 A형 기출
+#좋은 코드인거 같다
+def dfs(count, total):
+    global answer
+    if count >= N + 1:
+        if answer < total:
+            answer = total
+        return
+    if count + 4 <= N:
+        dfs(count + 4, eval(str(total) + arr[count] + str(eval(arr[count + 1:count + 4]))))
+    dfs(count + 2, eval(str(total) + arr[count:count + 2]))
+
+
+N = int(input())
+arr = input()
+answer = -2 ** 31
+dfs(1, int(arr[0]))
+print(answer)

@@ -1,0 +1,15 @@
+#baekjoon 9375 패션왕 신해빈 - 자료구조
+test = int(input())
+for i in range(test):
+    cloth = {}
+    num = int(input())
+    for j in range(num):
+        _, a = input().split() # 받는 글자 중 뒤쪽이 key값
+        if a in cloth.keys():
+            cloth[a] += 1
+        else:
+            cloth[a] = 1
+    result = 1
+    for j in cloth.values(): # 경우의 수 = 계산 각 옷 가지 수 + 1(안입는경우) 해서 모두 곱해줌  
+        result *= (j+1)
+    print(result-1) # 모두 안입경우 1번 빼주기

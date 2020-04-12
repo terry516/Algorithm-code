@@ -1,0 +1,54 @@
+#카카오 겨울 인턴 recruit - 징검다리 건너기
+#시간초과 나는 내 코드
+def solution(stones, k):
+    answer = 1
+    if check_dol(stones) > k:
+        return 0
+    while 1:
+        for i in range(len(stones)):
+            if stones[i] != 0:
+                stones[i] -= 1
+        if check_dol(stones) < k:
+            answer += 1
+        else:
+            return answer
+
+def check_dol(stones):
+    zero_len = 0
+    temp = 0
+    for i in stones:
+        if i == 0:
+            temp += 1
+        else:
+            temp = 0
+        zero_len = max(zero_len, temp)
+    return zero_len
+
+''' 이분탐색으로 풀어야 한다함..
+def solution(stones, k):
+    _min, _max = 0, max(stones)
+    answer = 0
+    while _min <= _max:
+        mid = (_min + _max) // 2
+        arr = []
+        zero_in_row = 0 
+        max_zeros = zero_in_row
+        for i in range(len(stones)):
+            if stones[i] >= mid:
+                arr.append(stones[i])
+            elif stones[i] < mid:
+                arr.append(0)
+            if arr[i] == 0:
+                zero_in_row += 1
+            elif arr[i] != 0:
+                max_zeros = max(max_zeros, zero_in_row)
+                zero_in_row = 0
+        
+        max_zeros = max(max_zeros, zero_in_row)
+        if max_zeros >= k:
+            _max = mid - 1
+        else:
+            answer = mid
+            _min = mid + 1
+    return answer
+'''

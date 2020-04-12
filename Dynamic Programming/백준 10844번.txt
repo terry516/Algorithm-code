@@ -1,0 +1,17 @@
+#baekjoon 10844 쉬운 계단 수 - dp
+#dp가 맞는가?
+import copy
+n = int(input())
+dp = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1] # n자리 마지막 수 0부터 9까지 숫자의 수
+temp = [0]*10
+if n != 1:
+    for _ in range(n-1):
+        for i in range(10):
+            if i == 0:
+                temp[i] = dp[i+1]
+            elif i == 9:
+                temp[i] = dp[i-1]
+            else:
+                temp[i] = dp[i-1] + dp[i+1]
+        dp = copy.deepcopy(temp)
+print(sum(dp) % 1000000000)

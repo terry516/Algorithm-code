@@ -1,0 +1,7 @@
+#baekjoon 1789 수들의 합 - 구현
+#아이디어가 중요 1~n까지의 합이 가장 많다.
+s = int(input())
+n = 1
+while n * (n + 1) / 2 <= s:
+    n += 1
+print(n - 1)

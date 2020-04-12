@@ -1,0 +1,22 @@
+#naekjoon 1159 농구경기 - 구현
+#이름 첫글자 -> 딕셔너리 -> 5개 이상인거 뽑기
+n = int(input())
+player = []
+selection = {}
+name = []
+for _ in range(n):
+    player.append(input().strip())
+for i in player:
+    if i[0] not in selection.keys():
+        selection[i[0]] = 1
+    else:
+        selection[i[0]] += 1
+cnt = 0
+for i in selection.keys():
+    if selection[i] >= 5:
+        name.append(i)
+        cnt += 1
+if cnt == 0:
+    print("PREDAJA")
+else:
+    print(''.join(sorted(name)))

@@ -1,0 +1,17 @@
+#baekjoon 1620 나는야 포켓몬 마스터
+import sys
+a, b = map(int, (sys.stdin.readline()).split())
+poketmon = []
+dict_po = {}
+for i in range(a):
+    e = sys.stdin.readline().strip()
+    poketmon.append(e)
+    dict_po[e] = i+1
+question = list(sys.stdin.readline().strip() for _ in range(b))
+for i in question:
+    if i.isdigit():
+        print(poketmon[int(i)-1])
+    else:
+        print(dict_po[i])
+
+# 마지막줄에 index()로 했다가 시간초과 떳음 시간복잡도를 줄여야함

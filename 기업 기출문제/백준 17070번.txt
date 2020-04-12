@@ -1,0 +1,75 @@
+#baekjoon 17070 파이프 옮기기 - 삼성
+# 맞긴한데 시간초과....
+import sys
+
+state = {0: [[0, 1, 0], [1, 1, 1]],1:[[0,1,0],[1,1,1],[1,0,2]],2:[[1,1,1],[1,0,2]]}  # 0:옆 1:대각 2:아래
+n = int(sys.stdin.readline())
+m = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+block = set()
+for i in range(n):
+    for j in range(n):
+        if m[i][j] == 1:
+            block.add((i, j))
+cnt = 0
+
+
+def get_occupy(point, index):
+    global cnt
+    flag = 0
+    for i in state[index]: # i = [0,1,0]
+        occupy = set()
+        if i[2] == 0: #대각선이 아니면 차지 공간 2개
+            temp = [point[0]+i[0], point[1]+i[1]]
+            index = i[2]
+            occupy = {(temp[0], temp[1]), (temp[0], temp[1] - 1)} # 옆 point - 1
+        elif i[2] == 1:
+            temp = [point[0] + i[0], point[1] + i[1]]
+            index = i[2]
+            occupy = {(temp[0], temp[1]), (temp[0], temp[1] - 1), (temp[0] - 1, temp[1]), (temp[0] - 1, temp[1] - 1)}  # 대각선
+        else:
+            temp = [point[0] + i[0], point[1] + i[1]]
+            index = i[2]
+            occupy = {(temp[0], temp[1]), (temp[0] - 1, temp[1])}  # 아래
+
+        for i in occupy: # block에 걸리면 취소
+            if i in block:
+                flag = 1
+                break
+
+        if flag == 1:
+            continue
+        else:
+            if point == [n-1, n-1]:
+                cnt += 1
+                return
+            elif point[0] > n-1 or point[1] > n-1:
+                return
+            else:
+                get_occupy(temp, index)
+
+get_occupy([0,1], 0)
+print(cnt)
+''' 정답 코드
+import sys
+n = int(sys.stdin.readline())
+maps = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+
+table = [[[0]*3 for _ in range(n)] for _ in range(n)]
+table [0][1][0] = 1
+print(table)
+for x in range(2,n):
+    if maps[0][x] == 0:
+        table[0][x][0] = table[0][x-1][0]
+
+for y in range(n):
+    print(table)
+    for x in range(2,n):
+        if maps[y][x] == maps[y][x-1] == maps[y-1][x] == 0:
+            table[y][x][2] = table[y-1][x-1][0] + table[y-1][x-1][1] + table[y-1][x-1][2]
+        if maps[y][x] == 0:
+            table[y][x][0] = table[y][x-1][2] + table[y][x-1][0]
+            table[y][x][1] = table[y-1][x][2] + table[y-1][x][1]
+
+print(sum(table[-1][-1]))
+출처 : https://m.post.naver.com/viewer/postView.nhn?volumeNo=27190605&memberNo=33264526
+'''

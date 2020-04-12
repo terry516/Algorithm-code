@@ -1,0 +1,19 @@
+#baekjoon 2231 ºÐÇØÇÕ - brute force
+n = int(input())
+for i in range(n):
+    m = i
+    for j in str(i):
+        m += int(j)
+    if m == n:
+        print(i)
+        break
+    if i == n-1:
+        print(0)
+
+''' short coding
+a=int(input())
+for i in range(a):
+ if i+sum(map(int,str(i)))==a:break
+ else:i=0
+print(i)
+'''

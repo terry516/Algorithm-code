@@ -1,0 +1,20 @@
+#baekjoon 2805 나무짜르기 - 이분
+#좀 더 잘 생각해보자 굳이 def를 쓸 필요는 없음 시간초과로 pypy로 돌려야함..ㅜ
+n, m = map(int, input().split())
+wood = list(map(int, input().split()))
+start, end = 1, max(wood)
+while start <= end:  # 적절한 벌목 높이를 찾는 알고리즘
+    mid = (start + end) // 2
+
+    log = 0  # 벌목된 나무 총합
+    for i in wood:
+        if i >= mid:
+            log += i - mid
+
+    # 벌목 높이를 이분탐색
+    if log >= m:
+        start = mid + 1
+    else:
+        end = mid - 1
+
+print(end)
