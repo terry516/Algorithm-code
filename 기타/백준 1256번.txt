@@ -1,0 +1,39 @@
+#baekjoon 1256 사전 - 조합론
+#조졌다 모르겠다
+from math import factorial as f
+a,b,c=map(int,input().split())
+s = ""
+if c > f(a+b)/f(a)/f(b):
+    print(-1)
+else:
+    t = 0
+    while a and b:
+        q = f(a+b-1)/f(a-1)/f(b)
+        if t+q < c:
+            b -= 1
+            t += q
+            s += 'z'
+        else:
+            a -= 1
+            s += 'a'
+
+    while a:
+        s += 'a'
+        a -= 1
+    while b:
+        s += 'z'
+        b -= 1
+
+    print(s)
+''' 내 코드 시간초과(-1 나오는 경우 추가는 해야함) 
+from itertools import permutations
+import sys
+
+n, m, k = map(int, sys.stdin.readline().split())
+
+candidate = set(permutations(['a'] * n + ['z'] * m, n+m))
+answer = []
+for i in candiate:
+    answer.append(''.join(list(i)))
+print(sorted(answer)[k-1])
+'''

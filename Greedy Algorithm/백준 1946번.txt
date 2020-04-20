@@ -1,0 +1,31 @@
+#baekjoon 1946 신입사원 - greedy
+#서류점수 별로 sort해준 다음 면접점수 검사 -> 시간 초과 code 
+import sys
+input = sys.stdin.readline
+
+for _ in range(int(input())):
+    n = int(input())
+    score = sorted([list(map(int, input().split())) for _ in range(n)])
+    b = n
+    for i, j in enumerate(score):
+        if j[0] == 1 or j[1] == 1:
+            continue
+        else:
+            for k in range(i):
+                if j[1] > score[k][1]:
+                    b -= 1
+                    break
+    print(b)
+''' p을 n+1 큰수로 쓰고 score를 돌면서 p를 기준으로 합격자 구분
+import sys
+for _ in range(int(sys.stdin.readline())):
+    n = int(sys.stdin.readline())
+    score = sorted([tuple(map(int, sys.stdin.readline().split())) for _ in range(n)], key=lambda x:x[0])
+    print(score)
+    p, ans = n+1, 0
+    for s, e in score:
+        if p > e:
+            ans += 1
+            p = e
+    sys.stdout.write("{}\n".format(ans))
+'''

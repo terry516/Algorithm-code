@@ -1,0 +1,25 @@
+#baekjoon 10448 유레카 이론 - bf
+#product 함수 이용
+from itertools import product
+n = 1
+tri = []
+while int(n*(n+1)/2) < 1000: # 합이 1000보다 작은 삼각형 모두 구함
+    tri.append(int(n*(n+1)/2))
+    n += 1
+
+N = int(input()) # 문제 받기
+n = []
+for _ in range(N):
+    n.append(int(input()))
+    
+res = 0
+for x in n:
+    for i in product(tri, repeat=3): # 3가지 삼각형 조합
+        if(sum(i) == x):
+            res = 1
+            break
+    print(res)
+    res = 0
+''' short coding 불가능한 수를 미리 구한듯..
+for _ in[0]*int(input()):print("10"[int(input())in[4,6,11,20,29]])
+'''
