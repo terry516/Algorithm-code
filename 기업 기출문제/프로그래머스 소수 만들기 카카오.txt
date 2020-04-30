@@ -1,0 +1,21 @@
+# 프로그래머스 소수 만들기 - 카카오
+from itertools import combinations
+def get_primes(n): # 에라토스테네스의 체 (소수 구하기)
+    a = [False,False] + [True]*(n-1)
+    primes=[]
+
+    for i in range(2,n+1):
+        if a[i]:
+            primes.append(i)
+            for j in range(2*i, n+1, i):
+                a[j] = False
+    return primes
+
+def solution(nums):
+    answer = 0
+    primes = get_primes(2997)
+    for i in list(combinations(nums,3)):
+        if sum(i) in primes:
+            answer += 1
+    return answer
+print(solution([1,2,7,6,4]))

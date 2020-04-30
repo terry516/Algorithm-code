@@ -1,0 +1,8 @@
+# 프로그래머스 종이접기 - 카카오
+# 규칙찾기가 힘들다...
+def solution(n):
+    answer = [0]
+    for i in range(1,n): #중앙 0을 기준으로 앞의 answer을 뒤집고 보수
+        answer = answer + [0] + [(i+1) % 2 for i in reversed(answer)]
+    return answer
+    

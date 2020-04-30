@@ -1,0 +1,18 @@
+# 프로그래머스 스킬트리 - 카카오
+# 쉬운편
+def solution(skill, skill_trees):
+    answer = 0
+    for i in skill_trees:
+        idx = 0  # 스킬 순서확인 index
+        for j in i:
+            if j not in skill:  # 스킬 트리에 없으면 pass
+                pass
+            else: # 스킬 트리일때
+                if j == skill[idx]:  # 스킬 트리 순서 확인
+                    idx += 1
+                else:
+                    break
+            if idx == len(skill) or j == i[-1]:  # 스킬트리 순서가 끝나거나 마지막 스킬일때 끝
+                answer += 1
+                break
+    return answer
