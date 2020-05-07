@@ -1,0 +1,21 @@
+# 프로그래머스 방문 길이  lv3 - 카카오
+
+def solution(dirs):
+    answer = 0
+    start_point = [0, 0]
+    visted = []
+    dir_code = {'U': [-1, 0], 'D': [1, 0], 'R': [0, 1], 'L': [0, -1]}  # 방향
+
+    for i in dirs:
+        nx = start_point[0] + dir_code[i][0]
+        ny = start_point[1] + dir_code[i][1]
+        if (-5 > nx or nx > 5) or (-5 > ny or ny > 5):
+            continue
+        if (start_point, [nx, ny]) not in visted:
+            visted.append((start_point, [nx, ny]))  # 양방향으로 추가해 주어야함
+            visted.append(([nx, ny], start_point))
+            answer += 1
+
+        start_point = [nx, ny]
+
+    return answer
