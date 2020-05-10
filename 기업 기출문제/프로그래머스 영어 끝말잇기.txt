@@ -1,0 +1,34 @@
+#프로그래머스 영어 끝말잇기 - 카카오 2018
+#안어려움
+def check(a,b):
+    if a[-1] == b[0]:
+        return True
+    else:
+        return False
+
+def solution(n, words):
+    answer = []
+    round = 1
+    player = 2
+    used_word = [words[0]]
+    for i in range(1, len(words)):
+        #끝말이 이어지는지 확인
+        if check(words[i-1], words[i]):
+            #사용이 된 단어인가 확인
+            if words[i] in used_word:
+                answer = [player, round]
+                return answer
+            else:
+                used_word.append(words[i])
+
+            if player < n:
+                player += 1
+            else:
+                round += 1
+                player = 1
+        else:
+            answer = [player, round]
+            return answer
+
+    answer = [0, 0]
+    return answer

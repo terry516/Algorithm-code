@@ -1,0 +1,28 @@
+#프로그래머스 문자열 압축 - 카카오
+
+def cal_len(s, i):  # s: 문자열 i: 검사하는 글자 수
+    idx = 0
+    cnt = 1
+    new_sentence = []
+    while idx+i <= len(s) + i:  # 이 부분이 어려웠음 사실 크게 놓기만해도 돌아감
+        if s[idx:idx+i] == s[idx+i:idx+2*i]:  # 앞뒤 글자가 같은경우
+            cnt += 1
+            idx += i
+        else:
+            if cnt != 1:  # 앞뒤 글자가 다른경우 cnt가 1이 아닐때
+                new_sentence.append(str(cnt))
+                new_sentence.append(s[idx:idx+i])
+                idx += i
+                cnt = 1
+            else:  # 앞뒤 글자가 다른경우 cnt가 1일때
+                new_sentence.append(s[idx:idx + i])
+                idx += i
+
+    return len(''.join(new_sentence))
+
+def solution(s):
+    answer = len(s)
+    half = int(len(s) / 2)
+    for i in range(1, half+1):  # 중복인 글자 1개부터 쭉...
+        answer = min(answer, cal_len(s, i))
+    return answer

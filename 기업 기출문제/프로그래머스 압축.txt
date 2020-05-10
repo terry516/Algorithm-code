@@ -1,0 +1,21 @@
+#프로그래머스 압축 - 2018 카카오
+#아이고 두야
+
+def solution(msg):
+    answer = []
+    dic = [0,'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+    while msg:
+        idx = 1
+        # 추가할 단어 확인
+        while msg[:idx] in dic and idx <= len(msg):
+            idx += 1
+        idx -= 1
+        # 단어 추가 및 msg 줄이기
+        if msg[:idx] in dic:
+            answer.append(dic.index(msg[:idx]))
+            # 마지막 글자인 경우는 추가 안하기 위해
+            if idx+1 <= len(msg):
+                dic.append(msg[:idx+1])
+        msg = msg[idx:]
+    return answer
+print(solution('KAKAO'))
