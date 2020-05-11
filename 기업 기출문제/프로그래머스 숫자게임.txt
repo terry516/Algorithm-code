@@ -1,0 +1,16 @@
+#프로그래머스 숫자게임 - 카카오 2018
+#처음에는 while문을 돌려서 했다가 효율성에서 틀림
+#효율성을 따져보자, 의외로 간단했다
+
+def solution(A, B):
+    answer = 0
+    sortA = sorted(A)
+    sortB = sorted(B)
+    for i in sortA:
+        for j in sortB:
+            if i > j:
+                answer += 1
+                sortB.remove(j)
+                break
+    return answer
+print(solution([5,1,3,7],[2,2,6,8]))

@@ -1,0 +1,14 @@
+# 프로그래머스 튜플 - 2019 카카오
+# 정규표현식 사용 ★★
+import re
+def solution(s):
+    answer = []
+    a = s.split(',{')
+    a.sort(key=len)
+    for i in a:
+        numbers = re.findall('\d+', i)
+        for k in numbers:
+            if int(k) not in answer:
+                answer.append(int(k))
+    return answer
+print(solution("{{2},{2,1},{2,1,3},{2,1,3,4}}"))
