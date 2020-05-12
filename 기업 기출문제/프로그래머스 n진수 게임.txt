@@ -1,0 +1,21 @@
+#프로그래머스 n진수 게임 - 카카오 2018
+#n진수 변환 프로그램 만들기
+
+a = '0123456789ABCDEF'
+def numeral_system(number, base):
+    q, r = divmod(number, base)
+    n = a[r]
+    return numeral_system(q, base) + n if q else n
+
+def solution(n, t, m, p):
+    answer = ''
+    i = 0
+    while 1:
+        temp = numeral_system(i, n)
+        answer += temp
+        # 미리 구할 숫자의 갯수 * 인원 = 미리 구하는 길이
+        if len(answer) > (t*m):
+            break
+        i += 1
+    answer = answer[p-1:(t*m):m]
+    return answer

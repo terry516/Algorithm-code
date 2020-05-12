@@ -1,0 +1,17 @@
+#프로그래머스 방금그곡 - 카카오 2018
+#replace의 활용 특수가호가 들어간 음을 모두 바꾸어준다.
+def solution(m, musicinfos):
+    answer = ''
+    music_len = 0
+    m = m.replace('C#', 'c').replace('D#', 'd').replace('E#', 'e').replace('F#', 'f').replace('G#', 'g').replace('A#', 'a')
+    for i in musicinfos:
+        start, end, name, melody = i.split(',')
+        time = (int(end[0:2])-int(start[0:2]))*60 + (int(end[3:5])-int(start[3:5]))
+        melody = melody.replace('C#', 'c').replace('D#', 'd').replace('E#', 'e').replace('F#', 'f').replace('G#', 'g').replace('A#', 'a')
+        music = melody*(time//len(melody)) + melody[0:(time%len(melody))]
+        if m in music and music_len < len(music):
+            answer = name
+            music_len = len(music)
+    if not answer:
+        answer = '(None)'
+    return answer
