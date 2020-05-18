@@ -1,0 +1,22 @@
+#프로그래머스 오픈채팅방 - 2019 카카오
+#어떻게 구현할 것인가 생각만하면 풀림, answer_list에 [UID, 상태]를 저장하여 순서를 맞춰줌
+#UID_dic[UID] = 닉네임 으로 만들어 마지막에 바뀐 아이디로 들어갈 수 있게함
+
+def solution(record):
+    answer = []
+    answer_list = []
+    UID_dic = dict()
+    for i in record:
+        if i[0] == 'E':
+            state, UID, nick = i.split()
+            UID_dic[UID] = nick
+            answer_list.append([UID, '들어왔'])
+        elif i[0] == 'L':
+            state, UID = i.split()
+            answer_list.append([UID, '나갔'])
+        else:
+            state, UID, nick = i.split()
+            UID_dic[UID] = nick
+    for a, b in answer_list:
+        answer.append('{0}님이 {1}습니다.'.format(UID_dic[a], b))
+    return answer

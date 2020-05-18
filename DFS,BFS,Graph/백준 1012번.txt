@@ -1,0 +1,29 @@
+#baekjoon 1012 유기농 배추 - bfs
+#의외로 시간초과가 계속 났음... bfs를 쓰면 쉽게 풀리긴함
+
+from collections import deque
+num = int(input())
+for _ in range(num):
+    n, m, k = map(int, input().split())
+    s = [[0] * n for i in range(m)]
+    for j in range(k):
+        a, b = map(int, input().split())
+        s[b][a] = 1
+    answer = 0
+    for i in range(m):
+        for j in range(n):
+            if s[i][j] == 1:
+                go = deque()
+                go.append([i, j])
+                while go:
+                    a = go.popleft()
+                    s[a[0]][a[1]] = 0
+                    dx = [0,0,-1,1]
+                    dy = [-1,1,0,0]
+                    for k in range(4):
+                        nx = a[0] + dx[k]
+                        ny = a[1] + dy[k]
+                        if 0 <= nx < m and 0 <= ny < n and s[nx][ny] == 1 and [nx, ny] not in go:
+                            go.append([nx, ny])
+                answer += 1
+    print(answer)
