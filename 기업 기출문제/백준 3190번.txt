@@ -1,0 +1,46 @@
+#baekjoon 3190 - 뱀 삼성 기출
+#방향이 바뀔때 방향 설정만 잘해주면 쉽게 풀림, deque를 이용하여 진행할때 snake 뒤를 지우고 앞을 추가
+
+from collections import deque
+n = int(input())
+k = int(input())
+apple = [list(map(int, input().split())) for _ in range(k)]
+l = int(input())
+order = [list(input().split()) for _ in range(l)]
+
+# 동서남북 = 0123
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+direction = 0
+snake = deque([[1, 1]])
+time = 0
+
+while 1:
+    if order:
+        if time == int(order[0][0]):
+            if (order[0][1] == 'L' and direction == 0) or (order[0][1] == 'D' and direction == 1):  # 북쪽
+                direction = 3
+            elif (order[0][1] == 'D' and direction == 0) or (order[0][1] == 'L' and direction == 1):  # 남쪽
+                direction = 2
+            elif (order[0][1] == 'D' and direction == 2) or (order[0][1] == 'L' and direction == 3):  # 서쪽
+                direction = 1
+            else:
+                direction = 0
+            order.remove(order[0])
+
+    nx = snake[0][0] + dx[direction]
+    ny = snake[0][1] + dy[direction]
+    time += 1
+    # 종료조건
+    if 1 <= nx <= n and 1 <= ny <= n and [nx, ny] not in snake:
+        if [nx, ny] in apple:
+            apple.remove([nx, ny])
+            snake.appendleft([nx, ny])
+        else:
+            snake.pop()
+            snake.appendleft([nx, ny])
+    else:
+        break
+
+print(time)

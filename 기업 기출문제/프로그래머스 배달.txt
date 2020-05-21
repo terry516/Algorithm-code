@@ -1,0 +1,87 @@
+#프로그래머스 배달 - 카카오 2018
+#다익스트라 알고리즘 활용, 길이 2개씩 생기는 경우 조심
+
+class Graph(object):
+
+    def __init__(self):
+        self.nodes = set()
+        self.edges = {}
+        self.distances = {}
+
+    def add_node(self, value):
+        self.nodes.add(value)
+
+    def add_edge(self, from_node, to_node, distance):
+        self._add_edge(from_node, to_node, distance)
+        self._add_edge(to_node, from_node, distance)
+
+    def _add_edge(self, from_node, to_node, distance):
+        self.edges.setdefault(from_node, [])
+        self.edges[from_node].append(to_node)
+        # 길이 2개 주는 경우가 있음
+        if self.distances.get((from_node, to_node), 0) == 0:
+            self.distances[(from_node, to_node)] = distance
+        else:
+            self.distances[(from_node, to_node)] = min(self.distances[(from_node, to_node)], distance)
+
+
+def dijkstra(graph, initial_node):
+    visited = {initial_node: 0}
+    current_node = initial_node
+    path = {}
+
+    nodes = set(graph.nodes)
+
+    while nodes:
+        min_node = None
+        for node in nodes:
+            if node in visited:
+                if min_node is None:
+                    min_node = node
+                elif visited[node] < visited[min_node]:
+                    min_node = node
+
+        if min_node is None:
+            break
+
+        nodes.remove(min_node)
+        cur_wt = visited[min_node]
+
+        for edge in graph.edges[min_node]:
+            wt = cur_wt + graph.distances[(min_node, edge)]
+            if edge not in visited or wt < visited[edge]:
+                visited[edge] = wt
+                path[edge] = min_node
+
+    return visited, path
+
+
+def shortest_path(graph, initial_node, goal_node):
+    distances, paths = dijkstra(graph, initial_node)
+    route = [goal_node]
+
+    while goal_node != initial_node:
+        route.append(paths[goal_node])
+        goal_node = paths[goal_node]
+
+    route.reverse()
+    return route
+
+def solution(N, road, K):
+    # 1 -> 1은 항상 가능하기 때문에 1부터 시작
+    answer = 1
+    # 그래프 생성
+    g = Graph()
+    g.nodes = set(range(1, N+1))
+    for fro, to, dis in road:
+        g.add_edge(fro, to, dis)
+    # 다익스트라 실행 -> 거리 구하기
+    for i in range(2, N+1):
+        way = shortest_path(g, 1, i)
+        distance = 0
+        for j in range(len(way)-1):
+            distance += g.distances[(way[j], way[j+1])]
+        if distance > K:
+            continue
+        answer += 1
+    return answer
