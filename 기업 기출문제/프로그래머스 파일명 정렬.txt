@@ -1,0 +1,11 @@
+#프로그래머스 파일명 정렬 - 2018 카카오
+#정규식 표현의 중요성
+
+import re
+def solution(files):
+    answer = []
+    split_file = [re.split(r"([0-9]+)", i) for i in files]
+    sort_file = sorted(split_file, key=lambda x: (x[0].lower(), int(x[1])))
+    for i in sort_file:
+        answer.append(''.join(i))
+    return answer
