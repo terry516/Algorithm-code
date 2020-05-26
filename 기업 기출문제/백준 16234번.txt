@@ -1,0 +1,51 @@
+#baekjoon 16234 인구 이동 - 삼성기출
+#BFS로 풀면 쉽게는 풀리나 정답까지의 도출 과정이 오래걸릴 수 있다.
+#내 코드는 BFS로 풀었지만 맞는데 시간초과가 났다...
+
+from collections import deque
+
+n, l, r = map(int, input().split())
+m = [list(map(int, input().split())) for i in range(n)]
+cnt = 0
+dx = [0, 0, 1, -1]
+dy = [1, -1, 0, 0]
+
+while True:
+    open_map = [[0] * n for _ in range(n)]  # 같은국경이 열린 국가들 표시
+    open_list = deque()  # while 돌릴 때 사용할 deque
+    total_open = [[0]]  # [[0, 새로운 인구수 1...,새로운 인구수 idx], [idx 좌표들], [idx 좌표들] ...]
+    idx = 1  # 같은 국경 idx
+
+    for i in range(n):
+        for j in range(n):
+            if open_map[i][j] == 0:
+                open_list.append([i, j])
+                temp = list()
+                total = 0
+                while open_list:
+                    x, y = open_list.popleft()
+                    total += m[x][y]
+                    temp.append([x, y])
+                    for k in range(4):
+                        nx = x + dx[k]
+                        ny = y + dy[k]
+                        if 0 <= ny < n and 0 <= nx < n and l <= abs(m[nx][ny] - m[x][y]) <= r and [nx, ny] not in temp:
+                            open_list.append([nx, ny])
+                total_open.append(temp)
+                total_open[0].append(int(total / len(temp)))
+                for a, b in temp:
+                    if open_map[a][b] == 0:
+                        open_map[a][b] = idx
+                idx += 1
+
+    # 종료조건 국경이 안생길때 idx = 국가 수일때
+    if idx-1 == n**2:
+        print(cnt)
+        break
+    else:
+        # 인구 분배
+        for i in range(1, idx):
+            a = 0
+            for x, y in total_open[i]:
+                m[x][y] = total_open[0][i]
+        cnt += 1
