@@ -1,0 +1,33 @@
+#프로그래머스 스티커모으기(2) - 카카오 2018
+#dp를 이용하여 풀었으며 아이디어를 생각해 내기 상당히 어려웠음
+
+def solution(sticker):
+
+    l = len(sticker)
+    # 만약 sticker 길이가 2 이하면 바로 계산
+    if l <= 2:
+        answer = max(sticker)
+        return answer
+    # sticker가 원형이기 때문에 처음과 마지막 스티커 관리가 어렵기 때문에 2가지형태의 sticker 생성
+    a = sticker[:l-1]  # 맨 끝 스티커를 지워줌
+    b = sticker[1:l]  # 맨 처음 스티커를 지워줌
+
+    # dp식은 한번씩 생각 해볼것
+    a_dp = [0] * l
+    a_dp[1], a_dp[2] = a[0], a[1]
+    b_dp = [0] * l
+    b_dp[1], b_dp[2] = b[0], b[1]
+
+    for i in range(2, l-1):
+        a_dp[i+1] = max(a_dp[i-1] + a[i], a_dp[i-2] + a[i])
+    max_a = max(a_dp)
+
+    for i in range(2, l-1):
+        b_dp[i+1] = max(b_dp[i-1] + b[i], b_dp[i-2] + b[i])
+    max_b = max(b_dp)
+
+    answer = max(max_a, max_b)
+
+    return answer
+
+print(solution([14, 6, 5, 11, 3, 9, 2, 10]))
