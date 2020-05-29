@@ -1,0 +1,10 @@
+#baekjoon  1764 듣보잡 - 구현
+#set를 이용하면 쉽게 풀린다
+
+n, m = map(int, input().split())
+listen = set(input() for _ in range(n))
+see = set(input() for _ in range(m))
+temp = (listen & see)
+print(len(temp))
+for i in sorted(temp):
+    print(i)
