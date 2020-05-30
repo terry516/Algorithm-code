@@ -1,0 +1,19 @@
+#프로그래머스 짝지어 제거하기 - 팁스타운
+#stack형식으로 구현하면 잘 풀림
+
+def solution(s):
+    stack = []
+    s = list(s)
+    idx = 0
+    while idx != len(s):
+        stack.append(s[idx])
+        idx += 1
+        if len(stack) > 1 and stack[-1] == stack[-2]:
+            stack.pop()
+            stack.pop()
+    if len(stack) == 0:
+        return 1
+    else:
+        return 0
+
+print(solution('aaaacccbbbbbbb'))
