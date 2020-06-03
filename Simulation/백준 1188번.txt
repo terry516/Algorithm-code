@@ -1,0 +1,28 @@
+#baekjoon 1188 음식평론가 - 구현
+#최소 칼질을 위한 아이디어 생각하기가 어려웠던 편
+
+n, m = map(int, input().split())
+# 빵이 사람보다 많은것은 의미가 없으므로 사람보다 적을때까지 빼줌
+while n > m:
+    n -= m
+
+# 빵을 일렬로 놓고 모든 빵을 m등분이라 생각하고 자를곳을 찾는다
+total = n*m  # 총 조각수
+x = n  # 첫번째 자르는 위치
+cnt = 0
+
+while x < total:
+    if x >= m:
+        # 만약 자르는 위치가 다른 빵이 이어진 부분이라면 자를 필요없음
+        if x % m == 0:
+            x += n
+            continue
+        else:
+            cnt += 1
+            x += n
+    # x가 m이하일때는 무조건 잘라야함
+    else:
+        cnt += 1
+        x += n
+        
+print(cnt)

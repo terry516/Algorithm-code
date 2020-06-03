@@ -1,0 +1,24 @@
+#baekjoon 1267 핸드폰요금 - 수학
+#딱 나눠질때만 조심하기
+
+import math
+n = int(input())
+use = list(map(int, input().split()))
+y, m = 0, 0
+for i in use:
+    if (i%30) == 0:
+        y += math.ceil(i/30) + 1
+    else:
+        y += math.ceil(i / 30)
+    if (i % 60) == 0:
+        m += math.ceil(i / 60) + 1
+    else:
+        m += math.ceil(i / 60)
+y = y * 10
+m = m * 15
+if y < m:
+    print('Y {0}'.format(y))
+elif m < y:
+    print('M {0}'.format(m))
+else:
+    print('Y M {0}'.format(y))
