@@ -1,0 +1,100 @@
+#baekjoon 16235 나무 재테크 - 삼성기출
+#삼성문제는 너무 길다. 꼼꼼하게 읽고 그대로 구현하면 풀 수 있음 
+#python3는 거의 시간 초과가 나는 것 같다
+
+# 내 코드 '시간초과'
+n, m, k = map(int, input().split())
+maps = [list(map(int, input().split())) for _ in range(n)]
+nutrition = [[5] * n for _ in range(n)]
+trees = [list(map(int, input().split())) for _ in range(m)]
+
+
+for _ in range(k):
+    # 봄
+    trees.sort(key=lambda x: (x[0], x[1], x[2]))
+    die = []
+    for i in range(len(trees)):
+        if nutrition[trees[i][0]-1][trees[i][1]-1] - trees[i][2] >= 0:
+            nutrition[trees[i][0]-1][trees[i][1]-1] -= trees[i][2]
+            trees[i][2] += 1
+        else:
+            die.append(i)  # 죽은 나무
+
+    # 여름
+    for i in list(reversed(die)):  # 뒤 부터 지워줌
+        nutrition[trees[i][0]-1][trees[i][1]-1] += int(trees[i][2]/2)
+        trees.remove(trees[i])
+
+    # 가을
+    dx = [-1,-1,-1,0,0,1,1,1]
+    dy = [-1,0,1,-1,1,-1,0,1]
+    for i in trees:
+        if i[2]%5 == 0:
+            for j in range(8):
+                nx = i[0] + dx[j] - 1
+                ny = i[1] + dy[j] - 1
+                if 0 <= nx < n and 0 <= ny < n:
+                    trees.append([nx+1, ny+1, 1])
+
+    # 겨울
+    for i in range(n):
+        for j in range(n):
+            nutrition[i][j] += maps[i][j]
+
+print(len(trees))
+
+''' pypy3 통과코드
+from sys import stdin
+from collections import deque
+input = stdin.readline
+
+ans = 0
+dx, dy = (-1, -1, -1, 0, 0, 1, 1, 1), (-1, 0, 1, -1, 1, -1, 0, 1)
+N, M, K = map(int, input().split())
+a = [list(map(int, input().split())) for _ in range(N)]
+tree = [[deque() for _ in range(N)] for _ in range(N)]
+nutrient = [[5 for _ in range(N)] for _ in range(N)]
+for _ in range(M):
+    x, y, z = map(int, input().split())
+    tree[x-1][y-1].append(z)
+    ans += 1
+
+def spring_summer():
+    global ans
+    for i in range(N):
+        for j in range(N):
+            for k in range(len(tree[i][j])):
+                if nutrient[i][j] >= tree[i][j][k]:
+                    nutrient[i][j] -= tree[i][j][k]
+                    tree[i][j][k] += 1
+                else:
+                    while k < len(tree[i][j]):
+                        nutrient[i][j] += (tree[i][j].pop()//2)
+                        ans -= 1
+                    break
+
+def fall_winter():
+    global ans
+    for i in range(N):
+        for j in range(N):
+            for k in range(len(tree[i][j])):
+                if tree[i][j][k]%5 == 0:
+                    for t in range(8):
+                        x, y = i+dx[t], j+dy[t]
+                        if x < 0 or x >= N or y < 0 or y >= N:
+                            continue
+                        tree[x][y].appendleft(1)
+                        ans += 1
+            nutrient[i][j] += a[i][j]
+
+def solve():
+    for _ in range(K):
+        spring_summer()
+        fall_winter()
+    print(ans)
+
+solve()
+
+
+출처: https://rebas.kr/713 [PROJECT REBAS]
+'''
