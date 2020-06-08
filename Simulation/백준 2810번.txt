@@ -1,0 +1,16 @@
+#baekjoon 2810 컵홀더 - 구현
+#'S'만 있는경우는 답 산출 방식이 다르다
+
+n = int(input())
+seats = input()
+s_cnt = 0
+l_cnt = 0
+for i in seats:
+    if i == 'S':
+        s_cnt += 1
+    else:
+        l_cnt += 1
+if l_cnt == 0:
+    print(s_cnt)
+else:
+    print(s_cnt+int(l_cnt/2)+1)
