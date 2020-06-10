@@ -1,0 +1,51 @@
+#프로그래머스 블록게임 - 2019 카카오
+#2시간이나 걸림 어렵다. 제거할 수 있는 도형을 고르고 1x1블럭을 놓을 수 있는지 확인 -> 반복
+
+def solution(board):
+    answer = 0
+    n = len(board)
+    run = 1
+    while run:
+        cnt = 0
+        block = []  # aware_shape 한번만 돌리게 확인 시간 줄이기 위해
+        for i in range(n):
+            for j in range(n):
+                if board[i][j] != 0 and board[i][j] not in block:
+                    block.append(board[i][j])
+                    if aware_shape(n, board, i, j) != None:
+                        a, b = aware_shape(n, board, i, j)  # a는 도형의 위치 b는 내가 넣는 블럭의 위치
+                        # 1x1블럭 놓아야 하는 자리까지 놓을 수 있는가
+                        flag = 0
+                        for x, y in b:
+                            for p in range(x+1):
+                                if board[p][y] != 0:
+                                    flag = 1
+                                    break
+                            if flag == 1:
+                                break
+                        # 놓을 수 있으면 도형을 지워줌
+                        if flag == 0:
+                            for x, y in a:
+                                board[x][y] = 0
+                            cnt += 1
+        if cnt == 0:
+            run = 0
+        else:
+            answer += cnt
+
+    return answer
+
+# 12가지의 도형 중 제거 할 수 있는 모양은 5가지 뿐이다. 걸러주는 def
+def aware_shape(n, board, x, y):
+    if 0 <= x+1 < n and 0 <= y+2 < n and board[x][y] == board[x+1][y] == board[x+1][y+1] == board[x+1][y+2]:
+        return [[x, y], [x+1, y], [x+1, y+1],[x+1, y+2]], [[x, y+1], [x, y+2]]
+    elif 0 <= x+2 < n and 0 <= y-1 < n and board[x][y] == board[x + 1][y] == board[x + 2][y] == board[x + 2][y - 1]:
+        return [[x, y],[x+1,y],[x+2,y],[x+2,y-1]], [[x, y-1], [x+1, y-1]]
+    elif 0 <= x+2 < n and 0 <= y+1 < n and board[x][y] == board[x + 1][y] == board[x + 2][y] == board[x + 2][y + 1]:
+        return [[x,y],[x+1,y],[x+2,y],[x+2,y+1]], [[x, y+1], [x+1, y+1]]
+    elif 0 <= x+1 < n and 0 <= y-2 < n and board[x][y] == board[x + 1][y] == board[x + 1][y - 1] == board[x + 1][y - 2]:
+        return [[x,y],[x+1,y],[x+1,y-1],[x+1,y-2]], [[x, y-2], [x, y-1]]
+    elif 0 <= x+1 < n and 0 <= y-1 < n and 0 <= y+1 < n and board[x][y] == board[x + 1][y] == board[x + 1][y + 1] == board[x + 1][y - 1]:
+        return [[x,y],[x+1,y],[x+1, y+1],[x+1, y-1]], [[x, y+1], [x, y-1]]
+    else:
+        return

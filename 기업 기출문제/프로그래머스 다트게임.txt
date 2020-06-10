@@ -1,0 +1,28 @@
+#프로그래머스 다트게임 - 2018 카카오
+#쉬운 문제 그냥 구현
+
+def solution(dartResult):
+    answer = [0]
+    temp = ''
+    idx = 0
+    for i in dartResult:
+        if i.isdigit():
+            temp += i
+        elif i == 'S':
+            idx += 1
+            answer.append(int(temp))
+            temp = ''
+        elif i == 'D':
+            idx += 1
+            answer.append(int(temp) ** 2)
+            temp = ''
+        elif i == 'T':
+            idx += 1
+            answer.append(int(temp) ** 3)
+            temp = ''
+        elif i == '*':
+            answer[idx-1] *= 2
+            answer[idx] *= 2
+        else:
+            answer[idx] *= -1
+    return sum(answer)
