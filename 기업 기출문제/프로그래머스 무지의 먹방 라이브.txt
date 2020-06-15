@@ -1,0 +1,59 @@
+#programmers 무지의 먹방 라이브 - 카카오 2019
+#정확도만 맞음, 효율성 초과
+
+def solution(food_times, k):
+
+    if sum(food_times) <= k:
+        return -1
+
+    food_idx = 1
+    food_dict = dict()
+
+    for i in food_times:
+        food_dict[food_idx] = i
+        food_idx += 1
+
+    time = 0
+    while 1:
+        erase = []
+        for i in food_dict:
+            food_dict[i] -= 1
+            time += 1
+            if time > k:
+                answer = i
+                return answer
+            if food_dict[i] == 0:
+                erase.append(i)
+        for i in erase:
+            del food_dict[i]
+
+''' 계속 음식을 돌면서 찾는것이 아닌 음식 최소 회전수를 통해서 계산해야함
+def solution(food_times, k):
+    times = {}
+    for idx, time in enumerate(food_times):
+        if time in times:
+            times[time].append(idx)
+        else:
+            times[time] = [idx]
+
+    len_foods = len(food_times)
+    cycle = 0
+
+    for time in sorted(times):
+        if k - (len_foods*(time-cycle)) >= 0:
+            k -= len_foods*(time-cycle)
+            len_foods -= len(times[time])
+            cycle += time-cycle
+        else:
+            k %= len_foods
+            for i in times:
+                if i >= time:
+                    idx = times[i][0]
+                    break
+            for i in range(idx, len(food_times)):
+                if food_times[i] >= time:
+                    if k == 0:
+                        return i+1
+                    k -= 1
+    return -1
+'''
