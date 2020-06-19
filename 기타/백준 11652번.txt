@@ -1,0 +1,13 @@
+#baekjoon 11652 카드
+#딕셔너리의 items() 활용법과 정렬사용
+
+n = int(input())
+nums = [int(input()) for _ in range(n)]
+num_dict = dict()
+for i in nums:
+    if i in num_dict:
+        num_dict[i] += 1
+    else:
+        num_dict[i] = 1
+num_dict = sorted(num_dict.items(), key=lambda x: (-x[1], x[0]))
+print(num_dict[0][0])
