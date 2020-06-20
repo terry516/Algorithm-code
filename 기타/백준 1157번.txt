@@ -1,0 +1,26 @@
+#baekjoon 1157 단어공부
+#한 글자을 줄때도 생각해야해서 런타임에러가 한번 생김
+#아래는 참고용 숏코딩 count()의 활용
+
+a = input()
+check = dict()
+for i in a:
+    i = i.upper()
+    if i in check:
+        check[i] += 1
+    else:
+        check[i] = 1
+answer = sorted(check.items(), key=lambda x: -x[1])
+if len(answer) == 1:
+    print(answer[0][0])
+elif answer[0][1] == answer[1][1]:
+    print('?')
+else:
+    print(answer[0][0])
+
+''' 
+w=list(input().upper())
+s=list(set(w))
+f=[w.count(l) for l in s]
+print(s[f.index(max(f))] if f.count(max(f))==1 else "?")
+'''

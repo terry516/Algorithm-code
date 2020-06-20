@@ -1,0 +1,15 @@
+#baekjoon 1449 수리공 항승
+#구멍난 곳을 정렬해주고 작은곳부터 테이프를 붙여 나간다
+
+n, l = map(int, input().split())
+hole = sorted(list(map(int, input().split())))
+check = set()
+answer = 0
+for i in hole:
+    if i in check:
+        continue
+    else:
+        answer += 1
+        for j in range(i, i+l):
+            check.add(j)
+print(answer)
