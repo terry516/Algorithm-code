@@ -1,0 +1,30 @@
+#baekjoon 2783 삼각김밥 - 구현
+#sorted를 이용해서 가장 싼 가게를 구하고 세븐25와 비교
+
+import sys
+input = sys.stdin.readline
+
+x, y = map(int, input().split())
+other_shops = []
+for _ in range(int(input())):
+    other_shops.append(list(map(int, input().split())))
+
+low_price = sorted(other_shops, key=lambda x:(x[0]/x[1]))
+
+if round(low_price[0][0]/low_price[0][1]*1000) > round(x/y*1000):
+    print(round(x/y*1000, 2))
+else:
+    print(round(low_price[0][0]/low_price[0][1]*1000, 2))
+
+
+''' 대부분은 이렇게 풀었음
+X, Y = map(int, input().split())
+value = X*1000 / Y
+N = int(input())
+for i in range(N):
+    A, B = map(int, input().split())
+    value2 = A*1000 / B
+    if value > value2 :
+        value = value2
+print(round(value, 2))
+'''
