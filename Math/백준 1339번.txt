@@ -1,0 +1,25 @@
+#beakjoon 1339 단어 수학 - 수학
+#단어의 자리수 만큼 중요도 배당 ex) asd -> a = 100, s = 10, d = 1 그 다음 큰 수부터 9,8 ... , 1, 0 곱해줌
+
+n = int(input())
+words = []
+for _ in range(n):
+    words.append(input())
+
+value = dict()  # [자리수, 빈도]
+for word in words:
+    word_len = len(word)
+    for i in word:
+        if i in value:
+            value[i] += 10**(word_len-1)
+        else:
+            value[i] = 10**(word_len-1)
+        word_len -= 1
+a = sorted(value.items(), key=lambda x: -x[1])
+
+num = 9
+total = 0
+for i in a:
+    total += (i[1]*num)
+    num -= 1
+print(total)
