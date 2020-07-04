@@ -1,0 +1,32 @@
+#baekjoon 9324 진짜 메세지 - 구현
+#암호 -> 진짜 암호인지 구분하기
+
+words = []
+for i in range(int(input())):  # 암호 넣기
+    words.append(input())
+
+next_word = ''  # flag= 1 일때 검사할 단어
+for word in words:
+    alpa = dict()
+    flag = 0
+    for i in word:
+        # flag = 0 일때는 단어 수 체크
+        if flag == 0:
+            if i in alpa:
+                alpa[i] += 1
+                if alpa[i] == 3:  # 같은 단어가 3개 나올때 검사 flag = 1
+                    next_word = i
+                    flag = 1
+            else:
+                alpa[i] = 1
+        # flag = 1 일때는 next_word가 맞는지 체크
+        else:
+            if i == next_word:
+                alpa[i] = 0
+                flag = 0
+            else:
+                break
+    if flag == 1:
+        print('FAKE')
+    else:
+        print('OK')

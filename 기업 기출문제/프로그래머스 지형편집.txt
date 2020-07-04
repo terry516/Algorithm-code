@@ -1,0 +1,56 @@
+#프로그래머스 지형편집 - 카카오 2018
+#이분탐색으로 진행 효율성 탈락, 아래 간단한 통과 코드 첨부
+
+def solution(land, P, Q):  # p는 추가비용 ,q는 제거 비용
+    land_dict = dict()
+    for i in range(len(land)):
+        for j in range(len(land)):
+            if land[i][j] in land_dict:
+                land_dict[land[i][j]] += 1
+            else:
+                land_dict[land[i][j]] = 1
+
+    standard = sorted(land_dict.items(), key=lambda x: -x[1])  # 층 수 빈도수 많은 순
+    height = sorted(land_dict.items(), key=lambda x: x[0])
+    land_min, land_max = height[0][0], height[-1][0]
+    
+    while land_min <= land_max:
+        mid = (land_max+land_min)//2
+        if land_min == land_max:
+            break
+        cost1, cost2 = 0, 0
+        for i in range(len(standard)):
+            if standard[i][0] >= mid:
+                cost1 += ((standard[i][0] - mid) * standard[i][1]) * Q
+            else:
+                cost1 += ((mid - standard[i][0]) * standard[i][1]) * P
+
+            if standard[i][0] >= mid+1:
+                cost2 += ((standard[i][0] - (mid+1)) * standard[i][1]) * Q
+            else:
+                cost2 += (((mid + 1) - (standard[i][0])) * standard[i][1]) * P
+        if cost1 > cost2:
+            land_min = mid + 1
+        else:
+            land_max = mid
+
+    cost = 0
+    for i in range(len(standard)):
+        if standard[i][0] >= mid:
+            cost += ((standard[i][0] - mid) * standard[i][1]) * Q
+        else:
+            cost += ((mid - standard[i][0]) * standard[i][1]) * P
+    return cost
+
+print(solution([[1, 2], [2, 3]],3,2))
+
+''' 통과코드 첨부
+import itertools
+def solution(land, P, Q):
+    flatten = list(itertools.chain.from_iterable(land))  # 유용하게 쓸 수 있을듯
+    flatten.sort()  # 작은 층 부터 쭉 나열
+    n = len(land)
+    minimum_index = int(n*n*Q / (Q+P))  # 그중에서 가장 작은 비용을 산출하는 식인듯(?)
+    layer = flatten[minimum_index]
+    return sum([(((layer - v) * P) if v < layer else ((v - layer) * Q)) for v in flatten])
+'''
