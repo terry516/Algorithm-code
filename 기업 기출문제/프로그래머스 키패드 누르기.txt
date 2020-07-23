@@ -1,0 +1,32 @@
+#프로그래머스 키패드 누르기 - 2020 인턴쉽
+#비교적 쉬움 그대로 구현만 하면됨
+
+def solution(numbers, hand):
+    answer = ''
+    location = {1:[0, 0], 2:[0, 1],3:[0, 2], 4:[1, 0], 5:[1, 1], 6:[1, 2], 7: [2, 0], 8:[2, 1], 9: [2, 2], 0: [3, 1], '*': [3, 0], '#': [3, 2]}
+    left, right = [1, 4, 7], [3, 6, 9]
+    l_hand, r_hand = location['*'], location['#']
+    for num in numbers:
+        if num in left: # 왼쪽 키패드일 경우
+            l_hand = location[num]
+            answer += 'L'
+        elif num in right: # 오른쪽 키패드일 경우
+            r_hand = location[num]
+            answer += 'R'
+        else: # 중간일때
+            l_dis = abs(location[num][0] - l_hand[0]) + abs(location[num][1] - l_hand[1])
+            r_dis = abs(location[num][0] - r_hand[0]) + abs(location[num][1] - r_hand[1])
+            if l_dis > r_dis:
+                r_hand = location[num]
+                answer += 'R'
+            elif r_dis > l_dis:
+                l_hand = location[num]
+                answer += 'L'
+            else:
+                if hand == 'right':
+                    r_hand = location[num]
+                    answer += 'R'
+                else:
+                    l_hand = location[num]
+                    answer += 'L'
+    return answer
