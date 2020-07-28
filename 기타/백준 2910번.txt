@@ -1,0 +1,14 @@
+#baekjoon 2910 빈도 정렬
+#딕셔너리를 통해 수 정리 및 item()을 활용하여 정렬
+
+n, c = map(int, input().split())
+num = list(map(int, input().split()))
+num_dict = {}
+for i in num:
+    if i not in num_dict:
+        num_dict[i] = 1
+    else:
+        num_dict[i] += 1
+for num, cnt in sorted(num_dict.items(), key=lambda x:-x[1]):
+    for i in range(cnt):
+        print(num, end=' ')
