@@ -1,0 +1,53 @@
+'''
+beakjoon 1213 팰린드롬 만들기 - 정렬
+거꾸로 읽어도 같은 이름 만들기
+dict 형식으로 글자 수 파악 -> 홀수인 글자가 2개이상이면 x -> 아니면 foward + middle + behind
+'''
+
+name = input()
+name_dict = {}
+for i in name:
+    if i not in name_dict:
+        name_dict[i] = 1
+    else:
+        name_dict[i] += 1
+foward, middle, behind = '', '', ''
+flag = 0
+for word, cnt in sorted(name_dict.items(), key=lambda x:(x[0], -x[1])):
+    if cnt % 2 == 0:
+        foward = foward + (word * (cnt // 2))
+        behind = (word * (cnt // 2)) + behind
+    else:
+        if flag == 0:
+            foward = foward + (word*(cnt//2))
+            behind = (word*(cnt//2)) + behind
+            middle = word
+            flag = 1
+        else:
+            flag = -1
+            break
+if flag == -1:
+    print("I'm Sorry Hansoo")
+else:
+    print(foward+middle+behind)
+
+''' 보기에 괜찮은 숏코딩 가져옴
+n = input()
+k = set(n)
+res = 0
+new = []
+odd = []
+for i in k:
+    if n.count(i) % 2:
+        res += 1
+        if res >= 2:
+            print("I'm Sorry Hansoo")
+            break
+        else:
+            odd.append(i)
+    new.append(i*(n.count(i)//2))
+if res <= 1:
+    x = list(''.join(new))
+    x.sort()
+    print(''.join(x + odd + list(reversed(x))))
+'''
