@@ -1,0 +1,19 @@
+#beakjoon 2941 크로아티아 알파벳 - 문자열
+#변경된 언어 확인 (2~3글자) or 없으면 그냥 영어(1글자) -> answer + 1
+
+answer = 0
+word = {'c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z='}
+a = input()
+start, end = 0, 0
+while start <= len(a)-1:
+    for i in range(3, 0, -1):
+        end = start
+        end += i
+        if a[start:end] in word:
+            answer += 1
+            start = end
+            break
+        elif i == 1:
+            answer += 1
+            start = end
+print(answer)
