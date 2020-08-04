@@ -1,0 +1,31 @@
+#baekjoon 9517 아이 러브 크로아티아 - 시뮬레이션
+#다른 사람의 코딩을 보니 문제는 반복되는게 아니였다. 더 간단히 구현 가능
+
+k = int(input())
+n = int(input())
+question = [list(input().split()) for _ in range(n)]
+max_time, next_man, idx = 0, 0, 0
+while max_time < 210:
+    k += next_man
+    idx = idx % n
+    time, ans = question[idx]
+    if ans == 'T':
+        next_man = 1
+        max_time += int(time)
+        idx += 1
+    else:
+        next_man = 0
+        max_time += int(time)
+        idx += 1
+print(k % 8 if k % 8 != 0 else 8)
+
+''' short coding 
+k=int(input())
+n=int(input())
+T=0
+for _ in range(n):
+  t,z=input().split()
+  T+=int(t)
+  if T>210: print(k); break
+  if z=='T': k=k%8+1
+'''
