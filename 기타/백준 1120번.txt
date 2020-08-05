@@ -1,0 +1,13 @@
+#baekjoon 1120 문자열 - 문자열
+#어차피 추가되는 문자는 같은것이기 때문에 a가 b와 가장 많이 일치하는 부분을 찾음
+
+a, b = input().split()
+diff = len(b) - len(a)
+answer = []
+for i in range(diff+1):
+    cnt = 0
+    for j in range(len(a)):
+        if a[j] != b[i+j]:
+            cnt += 1
+    answer.append(cnt)
+print(min(answer))
