@@ -1,0 +1,16 @@
+#baekjoon 1485 정사각형
+#각 점과 다른점의 거리를 구해서 answer 넣는다. 변의 길이, 대각선 길이 2개만 남아있어야 정사각형
+
+import math
+n = int(input())
+for _ in range(n):
+    point = [list(map(int, input().split())) for _ in range(4)]
+    answer = set()
+    for x, y in point:
+        for dx, dy in point:
+            if (x, y) != (dx, dy):
+                answer.add(math.sqrt((x-dx)**2 + (y-dy)**2))
+    if len(answer) == 2:
+        print(1)
+    else:
+        print(0)
