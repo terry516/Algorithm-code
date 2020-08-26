@@ -1,0 +1,21 @@
+#baekjoon 1806 부분함 - 이분탐색
+#투포인트 알고리즘 사용
+
+n, s = map(int, input().split())
+nums = list(map(int, input().split()))
+
+end = 0
+summary = 0
+ans = 100001
+for start in range(n):
+    while summary < s and end < n:
+        summary += nums[end]
+        end += 1
+    if summary >= s:
+        ans = min(ans, abs(end-start))
+    summary -= nums[start]
+
+if ans == 100001:
+    print(0)
+else:
+    print(ans)
