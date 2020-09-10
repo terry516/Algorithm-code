@@ -1,0 +1,30 @@
+# programmers 경주로 건설 - 카카오
+# 예외적인 부분을 생각하는데 오래 걸림... bfs기반 탐색
+
+from collections import deque
+
+
+def solution(board):
+    a = len(board) - 1
+    q = deque([[0, 0, 0, 0]])
+    dx, dy, di = [0, 0, -1, 1], [-1, 1, 0, 0], [1, 1, 2, 2]
+    while q:
+        x, y, direction, cost = q.popleft()  # direction # 처음: 0, 가로: 1, 세로: 2
+        if cost != board[x][y]:
+            continue
+        for i in range(4):
+            nx = x + dx[i]
+            ny = y + dy[i]
+            ndi = di[i]
+            if 0 <= nx < len(board) and 0 <= ny < len(board) and board[nx][ny] != 1:
+                if direction == 0 or direction == ndi:
+                    if board[nx][ny] == 0 or board[nx][ny] >= board[x][y] + 100:
+                        board[nx][ny] = board[x][y] + 100
+                        q.append([nx, ny, ndi, board[nx][ny]])
+                else:
+                    if board[nx][ny] == 0 or board[nx][ny] >= board[x][y] + 100 + 500:
+                        board[nx][ny] = board[x][y] + 600
+                        q.append([nx, ny, ndi, board[nx][ny]])
+    answer = board[a][a]
+
+    return answer
